@@ -1,69 +1,86 @@
-# React + TypeScript + Vite
+# Redux Practice Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript + Vite application demonstrating Redux Toolkit usage with a counter component and visual effects.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Counter Component**: Increment/decrement buttons with Redux state management
+- **Visual Indicators**: Displays pipe (`|`) symbols for every 5th count
+- **Conditional Styling**: 
+  - Every 6th item gets margin spacing
+  - Every 5th item gets rotated and positioned absolutely
+- **Redux Toolkit Integration**: Modern Redux patterns with createSlice
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React 19.1.0** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Redux Toolkit** - State management
+- **React Redux** - React bindings for Redux
+- **Tailwind CSS** - Utility-first CSS framework
+- **ESLint** - Code linting
+- **Prettier** - Code formatting
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Project Structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── App.tsx                 # Main application component
+├── main.tsx               # Application entry point
+├── redux/
+│   ├── store.ts           # Redux store configuration
+│   ├── hooks.ts           # Typed Redux hooks
+│   └── features/
+│       └── Counter/
+│           └── CreateSlice.ts  # Counter slice with reducers
+└── assets/                # Static assets
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. **Run development server**:
+   ```bash
+   npm run dev
+   ```
+
+3. **Build for production**:
+   ```bash
+   npm run build
+   ```
+
+4. **Preview production build**:
+   ```bash
+   npm run preview
+   ```
+
+## How It Works
+
+### Redux State Management
+
+The counter state includes:
+- `count`: Current counter value
+- `numberList`: Array that stores numbers divisible by 5
+
+### Counter Logic
+
+- **Increment**: Increases count by 1, adds to numberList if divisible by 5
+- **Decrement**: Decreases count by 1, removes from numberList if needed
+
+### Visual Effects
+
+- Pipe symbols (`|`) are rendered for each item in the numberList
+- Every 6th item gets additional left margin
+- Every 5th item gets rotated 60 degrees and positioned absolutely
+
+## Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production  
+- `npm run lint` - Run ESLint
+- `npm run preview` - Preview production build
